@@ -1,0 +1,311 @@
+
+
+<html>
+<head>
+<style>
+/* CSS Variables for consistency */
+:root {
+  --primary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --light-bg: #ecf0f1;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Advanced Gallery Grid Layout */
+div.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Keyframe animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slideInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Advanced Gallery Item Styling */
+div.gallery-item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  animation: slideInScale 0.6s ease-out;
+  position: relative;
+}
+
+div.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+div.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+div.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+div.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Hover effect with depth and scale */
+div.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--accent-color);
+}
+
+/* Image wrapper with aspect ratio */
+div.gallery-item a {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  background: linear-gradient(45deg, #f5f5f5 25%, transparent 25%, transparent 75%, #f5f5f5 75%, #f5f5f5),
+              linear-gradient(45deg, #f5f5f5 25%, transparent 25%, transparent 75%, #f5f5f5 75%, #f5f5f5);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+div.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+  filter: brightness(1) contrast(1);
+}
+
+/* Image enhancement on hover */
+div.gallery-item:hover img {
+  transform: scale(1.08) rotate(0.5deg);
+  filter: brightness(1.1) contrast(1.05) saturate(1.1);
+}
+
+/* Advanced description styling */
+div.gallery-item div.desc {
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
+  position: relative;
+  border-top: 2px solid rgba(230, 126, 34, 0.2);
+}
+
+div.gallery-item div.desc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+div.gallery-item:hover div.desc::before {
+  opacity: 1;
+}
+
+div.gallery-item div.desc {
+  font-size: 14px;
+  color: var(--primary-color);
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  div.gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  div.gallery-item:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 480px) {
+  div.gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  body {
+    padding: 20px 10px;
+  }
+}
+
+header {
+  max-width: 1200px;
+  margin: 0 auto 28px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+header h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+
+header p {
+  font-size: 1rem;
+  max-width: 780px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+.details {
+  max-width: 1200px;
+  margin: 42px auto 0;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+}
+
+.details h2 {
+  margin-bottom: 18px;
+  color: var(--primary-color);
+  font-size: 1.4rem;
+}
+
+.details article {
+  margin-bottom: 14px;
+}
+
+.details article p {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #2f4050;
+}
+
+.details ul {
+  margin: 8px 0 1rem 20px;
+  padding: 0;
+  list-style: disc;
+  color: #34495e;
+  line-height: 1.65;
+}
+</style>
+</head>
+<body>
+
+<div class="gallery">
+
+<div class="gallery-item">
+  <a target="_blank" 
+  href="claypots.webp">
+    <img src="C:\Users\260100\Downloads\claypots.webp" 
+    alt="claypots" width="600" height="400">
+  </a>
+  <div class="desc">Claypot</div>
+</div>
+
+<div class="gallery-item">
+  <a target="_blank"
+   href="shell necklace.jpg">
+    <img src="C:\Users\260100\Downloads\shell necklace.jpg" 
+    alt="shell necklace" width="600" height="400">
+  </a>
+  <div class="desc">Shell necklace</div>
+</div>
+
+<div class="gallery-item">
+  <a target="_blank" href="baskets.webp">
+    <img src="C:\Users\260100\Downloads\baskets.webp" alt="Baskets" width="600" height="400">
+  </a>
+  <div class="desc">Baskets</div>
+</div>
+
+<div class="gallery-item">
+  <a target="_blank" href="limepots.jpg">
+    <img src="C:\Users\260100\Downloads\limepots.jpg" alt="Lime pots" width="600" height="400">
+  </a>
+  <div class="desc">Lime pots</div>
+</div>
+
+</div>
+
+<header>
+  <h1>Milne Bay Heritage Gallery</h1>
+  <p>Discover rich cultural artifacts from Milne Bay Province with refined visual layout, animation and responsive styling.</p>
+</header>
+
+<section class="details">
+  <h2>Cultural “Purpose” Summary</h2>
+
+  <article>
+    <p>The main purpose of claypots.</p>
+    <ul>
+      <li>The primary purpose of Milne Bay clay pots is to serve as essential, traditional culinary vessels for cooking, storing, and serving food within village life. Made by women from local clay and fired in open flames, these pots are favored for preparing staples such as taro, sweet potato (kaukau), and yams, as they impart a unique "gibu namosi" (earthy) flavor and aroma that modern aluminum cookware cannot replicate. The pots are also used to store water, preserve boiled proteins, and in some areas, were historically used in specialized, sacred burial rituals to store the remains of the deceased.</li>
+    </ul>
+  </article>
+
+  <article>
+    <p>The primary purpose of shell necklace.</p>
+    <ul>
+      <li>The main purpose of the Milne Bay shell necklace, known locally as bagi (or soulava), is to serve as a high-value item of traditional currency and prestige in the Kula Ring, a ceremonial exchange system among the islands of the Massim archipelago. Crafted primarily from rare red spondylus shells found on Rossel and Sudest Islands, these necklaces travel in a clockwise direction between villages to establish and maintain lifelong partnerships, fostering peace and mutual obligation across vast maritime distances. Beyond the Kula ring, these necklaces hold immense social, cultural, and economic power. They are utilized to pay bride prices, secure land, and offer as compensation to stop retaliations in traditional disputes. Furthermore, the bagi functions as a vital symbol of cultural identity, wealth, and status, reflecting the artisan skill involved in its creation and symbolizing the wearer’s or owner’s social importance within Milne Bay society.</li>
+    </ul>
+  </article>
+
+<li>The main purpose of the Milne Bay shell necklace, known locally as bagi (or soulava), is to serve as a high-value item of traditional currency and prestige in the Kula Ring, a ceremonial exchange system among the islands of the Massim archipelago. Crafted primarily from rare red spondylus shells found on Rossel and Sudest Islands, these necklaces travel in a clockwise direction between villages to establish and maintain lifelong partnerships, fostering peace and mutual obligation across vast maritime distances. Beyond the Kula ring, these necklaces hold immense social, cultural, and economic power. They are utilized to pay bride prices, secure land, and offer as compensation to stop retaliations in traditional disputes. Furthermore, the bagi functions as a vital symbol of cultural identity, wealth, and status, reflecting the artisan skill involved in its creation and symbolizing the wearer's or owner's social importance within Milne Bay society.</li>
+<article>
+  <p>The main purpose of Milne Bay baskets.</p>
+  <ul>
+    <li>The primary purpose of traditional Milne Bay baskets, often known as bosa or boea, is for practical, everyday use, serving as essential tools for carrying food, garden produce, and personal items. Crafted by skilled women from natural materials like coconut fronds and pandanus, these baskets are designed for daily labor, enabling individuals to transport items from gardens, markets, or the sea, sometimes even being used to carry children. They are also used for storage, with some types traditionally suspended from the ceiling of homes. Beyond their utilitarian function, Milne Bay baskets hold significant social, economic, and cultural importance. They represent a deeply rooted artistic tradition passed down through generations, often acting as a symbol of wealth and cultural identity in the region. In contemporary times, these baskets, alongside other woven items, serve as a vital source of income for women, who travel to sell them, thus providing for their families and supporting community livelihoods.</li>
+  </ul>
+</article>
+
+<article>
+  <p>The main purpose of lime pots.</p>
+  <ul>
+    <li>The main purpose of traditional lime pits in Milne Bay, Papua New Guinea, is the production of calcium hydroxide (lime powder) through the burning and slaking of sea shells or coral, which is a critical, daily component of the betel nut (buai) chewing ritual. This powdered lime acts as an alkali that, when chewed with betel nut and mustard leaf, activates the nut's alkaloids, creating a mild stimulant effect, reducing acidity, and producing the characteristic red dye stained by users. In this context, the lime produced is stored in traditional, often highly decorated, containers (gourds or pots) and is consumed daily by many locals, including chiefs who use specific designs to signify status. Beyond the daily consumption, the lime produced in these pits holds significant sociocultural and practical importance in the region. The process of producing high-quality lime constitutes a traditional skill that is integral to cultural life, particularly within the Massim culture area of Milne Bay, where it is used to fill in incised designs on carved lime spatulas. Additionally, lime is traditionally used in construction, such as making mortar or white paint, and serves a symbolic role in relationship-building exchanges, with containers themselves acting as items that signify wealth and status.</li>
+  </ul>
+</article>
+</section>
+</body>
+</html>
